@@ -1,0 +1,35 @@
+model:
+  arch: MSMA
+  pretrained_from: fundus
+  classes: 3
+  task: multilabel
+
+training:
+  learning_rate: 0.003
+  weight_decay: 0.0001
+
+data:
+  batch_size: 16
+  num_workers: 4
+  img_size: [1024, 1024]
+  use_cache: true
+  crop_size: [512, 512]
+  cache_option: duplicated_memory
+  root:
+    gave: /home/clement/Documents/data/GAVE/
+    maplesdr: /home/clement/Documents/data/AV_Datasets/MAPLES-DR/
+    hrf: /home/clement/Documents/data/AV_Datasets/HRF/
+    les: /home/clement/Documents/data/AV_Datasets/LES-AV/
+    inspire: /home/clement/Documents/data/AV_Datasets/INSPIRE/
+    drhagis: /home/clement/Documents/data/AV_Datasets/DRHAGIS/
+    fives-train: /home/clement/Documents/data/AV_Datasets/FIVES-train/
+    fives-test: /home/clement/Documents/data/AV_Datasets/FIVES-test/
+    idrid-reta: /home/clement/Documents/data/AV_Datasets/IDRID-RETA-train/
+    aptos: /home/clement/Documents/data/AV_Datasets/Aptos/
+
+trainer:
+  max_epochs: 1000
+  accelerator: gpu
+  devices: [0, 1]
+  check_val_every_n_epoch: 20
+  precision: bf16
