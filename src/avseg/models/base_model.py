@@ -7,6 +7,8 @@ from torchmetrics import Accuracy, Dice, JaccardIndex, MetricCollection, F1Score
 from avseg.models.pretrained_encoder import get_segmentation_models
 from huggingface_hub import PyTorchModelHubMixin
 
+RELEASE = True
+
 
 class BaseModel(LightningModule, PyTorchModelHubMixin):
     """
@@ -33,12 +35,20 @@ class BaseModel(LightningModule, PyTorchModelHubMixin):
         self.encoder_name = encoder_name
         self.pretrained_from = pretrained_from
         self.task = task
-        self.model = get_segmentation_models(
-            arch=self.arch,
-            encoder_name=self.encoder_name,
-            num_classes=classes,
-            pretrained_on_fundus=self.pretrained_from == "fundus",
-        )
+        if RELEASE:
+            self.model = get_segmentation_models(
+                arch=self.arch,
+                encoder_name=self.encoder_name,
+                num_classes=classes,
+                pretrained_on_fundus=False,
+            )
+        else:
+            self.model = get_segmentation_models(
+                arch=self.arch,
+                encoder_name=self.encoder_name,
+                num_classes=classes,
+                pretrained_on_fundus=self.pretrained_from == "fundus",
+            )
         self.av_loss = DiceCELoss(
             include_background=True,
             to_onehot_y=False,

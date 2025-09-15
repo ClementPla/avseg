@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import List
+from matplotlib.colors import ListedColormap
 
 
 class FineTuningFrom(str, Enum):
@@ -11,3 +12,6 @@ class FineTuningFrom(str, Enum):
 class ModelType(str, Enum):
     MULTITASK = "multitask"
     MULTILABEL = "multilabel"
+
+
+CMAP = ListedColormap(["black", "red", "blue"])

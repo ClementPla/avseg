@@ -70,8 +70,5 @@ def get_segmentation_models(
         incompatible_keys = model.encoder.model.load_state_dict(
             timm_state_dict, strict=False
         )
-        print(
-            f"Incompatible keys for {item[1].item_id}: Missing {incompatible_keys.missing_keys}, Unexpected {incompatible_keys.unexpected_keys}"
-        )
 
     return model
