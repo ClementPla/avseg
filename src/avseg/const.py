@@ -14,4 +14,10 @@ class ModelType(str, Enum):
     MULTILABEL = "multilabel"
 
 
-CMAP = ListedColormap(["black", "red", "blue"])
+CMAP = ListedColormap(
+    [
+        "black",
+        "blue",
+        "red",
+    ]
+)
