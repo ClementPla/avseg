@@ -5,7 +5,7 @@ lightning_logs/
 notebooks/
 ui/
 tests/
-
+wandb/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
